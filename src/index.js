@@ -2,7 +2,7 @@ import React from "react";
 import baseTheme from "mdx-deck/themes";
 import syntaxTheme from "./tomorrow-prism-theme";
 import prismReason from "react-syntax-highlighter/languages/prism/reason";
-import ThemeProvider from "mdx-deck/Provider";
+//import ThemeProvider from "mdx-deck/Provider";
 import { Notes, Code, components as deckComponents } from "mdx-deck";
 import { convertTheme as toCodeSurferTheme } from "./codeSurferThemeConverter";
 import { strong } from "./Strong";
@@ -36,7 +36,7 @@ const KabisaLogo = _props => (
   </div>
 );
 
-const Provider = props => {
+const Provider = ThemeProvider => props => {
   const { children, ...rest } = props;
 
   return (
@@ -103,7 +103,7 @@ export const makeCodeComponent = LibCodeSurfer => {
   };
 };
 
-const theme = {
+const theme = ThemeProvider => ({
   ...baseTheme,
   font: "Quicksand, sans-serif",
   prism: {
@@ -140,22 +140,24 @@ const theme = {
   components: {
     strong: strong(colorPrimary)
   },
-  Provider
+  // Provider
+  Provider: Provider(ThemeProvider)
 
   // Customize your presentation theme here.
   //
   // Read the docs for more info:
   // https://github.com/jxnblk/mdx-deck/blob/master/docs/theming.md
   // https://github.com/jxnblk/mdx-deck/blob/master/docs/themes.md
-};
+});
 
-export const withCodeSurfer = LibCodeSurfer => {
+export const withCodeSurfer = (ThemeProvider, LibCodeSurfer) => {
   const CodeSurfer = makeCodeSurfer(LibCodeSurfer);
 
+  const themeInfo = theme(ThemeProvider);
   return {
-    ...theme,
+    ...themeInfo,
     components: {
-      ...theme.components,
+      ...themeInfo.components,
       code: makeCodeComponent(CodeSurfer)
     }
   };

@@ -4,6 +4,9 @@ const replace = require("rollup-plugin-replace");
 const resolve = require("rollup-plugin-node-resolve");
 const { uglify } = require("rollup-plugin-uglify");
 
+const pkg = require("./package.json");
+const dependencies = Object.keys(pkg.dependencies);
+
 const replaceNodeEnv = () =>
   replace({
     "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "test")
@@ -14,21 +17,15 @@ module.exports = [
     input: "src/index.js",
     output: {
       name: "mdx-deck-kabisa-theme",
-      file: "dist/bundle.js",
+      file: "dist/mdx-deck-kabisa-theme.js",
       format: "cjs",
       exports: "named"
     },
-    external: [
-      "react",
-      "react-dom",
-      "mdx-deck",
-      "mdx-deck/Provider",
-      "react-syntax-highlighter/languages/prism/reason"
-    ],
+    external: dependencies,
     plugins: [
       babel({ exclude: "node_modules/**" }),
-      commonjs(),
       resolve(),
+      commonjs(),
       replaceNodeEnv(),
       uglify()
     ]

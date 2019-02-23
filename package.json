@@ -13,10 +13,10 @@
   "files": [
     "dist"
   ],
-  "main": "dist/bundle.js",
+  "main": "dist/mdx-deck-kabisa-theme.js",
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-production} rollup -c",
-    "dev": "NODE_ENV=${NODE_ENV:-development} rollup -c -w"
+    "start": "NODE_ENV=${NODE_ENV:-development} rollup -c -w"
   },
   "dependencies": {
     "mdx-deck": "^1.7.14",
