@@ -13,6 +13,7 @@ module.exports = [
   {
     input: "src/index.js",
     output: {
+      name: "mdx-deck-kabisa-theme",
       file: "dist/bundle.js",
       format: "cjs",
       exports: "named"
