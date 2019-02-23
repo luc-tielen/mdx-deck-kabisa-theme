@@ -2,7 +2,7 @@ import React from "react";
 import baseTheme from "mdx-deck/themes";
 import syntaxTheme from "./tomorrow-prism-theme";
 import prismReason from "react-syntax-highlighter/languages/prism/reason";
-import ThemeProvider from "mdx-deck/dist/Provider";
+import ThemeProvider from "mdx-deck/Provider";
 import { Notes, Code, components as deckComponents } from "mdx-deck";
 import { convertTheme as toCodeSurferTheme } from "./codeSurferThemeConverter";
 import { strong } from "./Strong";
@@ -57,6 +57,10 @@ const codeSurferTheme = toCodeSurferTheme(syntaxTheme);
 const makeCodeSurfer = LibCodeSurfer => props => {
   const syntaxThemeContainer = syntaxTheme['pre[class*="language-"]'];
 
+  const updatedProps = {
+    ...props,
+    theme: codeSurferTheme
+  };
   return (
     <React.Fragment>
       <style
@@ -70,7 +74,7 @@ const makeCodeSurfer = LibCodeSurfer => props => {
     `
         }}
       />
-      <LibCodeSurfer theme={codeSurferTheme} {...props} />
+      <LibCodeSurfer {...updatedProps} />
     </React.Fragment>
   );
 };
@@ -145,8 +149,6 @@ const theme = {
   // https://github.com/jxnblk/mdx-deck/blob/master/docs/themes.md
 };
 
-export default theme;
-
 export const withCodeSurfer = LibCodeSurfer => {
   const CodeSurfer = makeCodeSurfer(LibCodeSurfer);
 
@@ -158,3 +160,5 @@ export const withCodeSurfer = LibCodeSurfer => {
     }
   };
 };
+
+export default theme;
