@@ -14,6 +14,13 @@ you will need to do the following 2 things:
   "dependencies": {
     "mdx-deck-kabisa-theme": "luc-tielen/mdx-deck-kabisa-theme#master",
     // other dependencies...
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "file-loader": "^3.0.1",
+    // other dev dependencies...
   }
   // more config ...
 }
