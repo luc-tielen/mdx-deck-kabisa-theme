@@ -10,10 +10,7 @@
   ],
   "author": "Pascal Widdershoven",
   "license": "MIT",
-  "files": [
-    "dist"
-  ],
-  "main": "dist/mdx-deck-kabisa-theme.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "NODE_ENV=${NODE_ENV:-production} rollup -c",
     "start": "NODE_ENV=${NODE_ENV:-development} rollup -c -w"
