@@ -3,6 +3,7 @@ import baseTheme from "mdx-deck/themes";
 import syntaxTheme from "./tomorrow-prism-theme";
 import prismReason from "react-syntax-highlighter/languages/prism/reason";
 import prismHaskell from "react-syntax-highlighter/languages/prism/haskell";
+import prismProlog from "react-syntax-highlighter/languages/prism/prolog";
 import ThemeProvider from "mdx-deck/dist/Provider";
 import { Notes, Code, components as deckComponents } from "mdx-deck";
 import { convertTheme as toCodeSurferTheme } from "./codeSurferThemeConverter";
@@ -111,7 +112,8 @@ const theme = {
     style: syntaxTheme,
     languages: {
       reason: prismReason,
-      haskell: prismHaskell
+      haskell: prismHaskell,
+      prolog: prismProlog
     }
   },
   colors: {
